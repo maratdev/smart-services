@@ -13,7 +13,7 @@
 
 # Подготовка переменных окружения
 
-Перед запуском переименуйте файл `.env.example` в `.env` в нужной папке (например, backend или frontend) и заполните переменные:
+Перед запуском переименуйте файл `.env.example` в `.env` в корне и в папке frontend:
 
 ```sh
 cp .env.example в .env
@@ -37,7 +37,6 @@ cp frontend/.env.example в frontend/.env
    ```sh
    npm run seed:prod
    ```
-
 ---
 
 - Для разработки используйте аналогичные команды с `:dev`
