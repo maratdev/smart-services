@@ -1,0 +1,25 @@
+{
+  "name": "smart",
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "docker compose up --build -d",
+    "start:prod": "docker compose -f docker-compose.yml up --build -d",
+    "restart:dev": "docker compose down && docker compose up --build -d",
+    "restart:prod": "docker compose -f docker-compose.yml down && docker compose -f docker-compose.yml up --build -d",
+    "stop": "docker compose down",
+    "logs": "docker compose logs -f",
+
+    "migration:create": "docker compose exec backend sh -c \"npx ts-node -r tsconfig-paths/register typeorm migration:create ./src/db/migration/$npm_config_name\"",
+    "migration:generate": "docker compose exec backend sh -c \"npx ts-node -r tsconfig-paths/register typeorm migration:generate ./src/db/migration/$npm_config_name -d src/utils/data-source.ts\"",
+
+    "migration:run:dev": "docker compose exec backend npx ts-node -r tsconfig-paths/register typeorm migration:run -d src/utils/data-source.ts",
+    "migration:run:prod": "docker compose exec backend npx typeorm migration:run -d ./dist/utils/data-source.js",
+
+    "migration:revert:dev": "docker compose exec backend npx ts-node -r tsconfig-paths/register typeorm migration:revert -d src/utils/data-source.ts",
+    "migration:revert:prod": "docker compose exec backend npx typeorm migration:revert -d ./dist/utils/data-source.js",
+
+    "seed:dev": "docker compose exec backend npx ts-node src/db/seeds/product.seed.ts",
+    "seed:prod": "docker compose exec backend node dist/db/seeds/product.seed.js"
+  }
+}
+

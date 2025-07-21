@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+#root {
+  min-width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  min-height: 100vh;
+  background-color: antiquewhite;
+}
+
